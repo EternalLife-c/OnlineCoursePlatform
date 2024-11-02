@@ -1,0 +1,42 @@
+﻿@using TopLearn.Core.Services.Interfaces
+@using TopLearn.Core.DTOs
+@inject IUserService _UserService
+@{
+    SideBarUserInfoViewModel user = _UserService.GetSideBarUserInfo(User.Identity.Name);
+}
+<div class="col-md-3 col-sm-12 col-xs-12">
+    <div name="UserImageAndInfo">
+        <div class="card shadow-lg border border-primary p-3" style="display: flex; justify-content: center; align-items: center; height: 100%; text-align: center;">
+            <div class="headline" style="padding-top: 20px; padding-bottom: 20px;">
+                <!-- Adjust the top padding here -->
+                <img id="imgAvatar" class="align-self-center" src="/UserAvatar/@user.ImageName" style="display: block; margin: 0 auto; width: 175px; height: 175px; object-fit: cover; border-radius: 50%;">
+            </div>
+            <h4 style="text-align: center; font-size: 19px; font-weight: 550;">@user.UserName</h4>
+        </div>
+    </div>
+    <br />
+    <div name="AccessMenu">
+        <div class="card shadow-lg border border-primary p-3">
+            <div name="AccessMenu">
+                <section class="access-menu">
+                    <div style="font-size: 16px">
+                        <ul>
+                            <li><a asp-area="UserPanel" asp-controller="Home" asp-action="Index">داشبورد </a></li>
+                            <li><a href="/UserPanel/EditProfile">ویرایش حساب کاربری</a></li>
+                            <li><a href="/UserPanel/ChangePassWord"> ویرایش کلمه عبور </a></li>
+                            <li><a href="/UserPanel/Wallet"> کیف پول </a></li>
+                            <li><a href="/Account/Order"> فاکتورها</a></li>
+                            <li><a href="/Account/MyCourses"> دوره های خریداری شده </a></li>
+                            <li><a href="/Account/MyFavorites">دوره های مورد علاقه </a></li>
+                            <li><a href="/Account/MyQuestions"> سوالات </a></li>
+                            <li><a href="/Account/MyAnswers"> پاسخ ها </a></li>
+                            <li><a href="/Account/Tickets"> تیکت ها </a></li>
+                            <li><a href="/logout"> خروج از حساب کاربری </a></li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+</div>

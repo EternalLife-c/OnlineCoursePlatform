@@ -1,0 +1,56 @@
+﻿@using TopLearn.Core.DTOs
+@model EditProfileViewModel
+
+@{
+    ViewData["Title"] = "ویرایش حساب کاربری";
+}
+
+<div class="container">
+    <div name="UserInformationArea">
+        <div class="row col-12" style="padding-top: 50px;">
+            <partial name="PartialViews/_UserPanelSideBar" />
+            <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="card shadow-lg border border-primary p-3">
+                    <div class="card-body">
+                        <div class="wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s" data-wow-offset="0" style="visibility: visible; animation-duration: 1s; animation-delay: 0.2s; animation-name: fadeInUp;">
+                            <div class="contact">
+                                <h3>ویرایش حساب کاربری</h3>
+                                <br />
+                                <form asp-action="EditProfile" method="post" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <input type="hidden" asp-for="AvatarName" />
+                                        <div class="form-group col-md-6">
+                                            <label asp-for="UserName">
+                                                نام کاربری
+                                                <span asp-validation-for="UserName" class="text-danger"></span>
+                                            </label>
+                                            <input asp-for="UserName" class="form-control" placeholder="نام کاربری">
+                                        </div>
+                                        <br />
+                                        <br />
+                                        <div class="form-group col-md-6">
+                                            <label>
+                                                انتخاب عکس پروفایل
+                                            </label>
+                                            <input type="file" asp-for="Avatar" data-val="false">
+                                            <span asp-validation-for="Avatar" class="text-danger"></span>
+                                        </div>
+                                        <br />
+                                        <div class="form-group col-md-6">
+                                            <img class="img-thumbnail mb-4" src="/UserAvatar/@Model.AvatarName" style="max-width: 150px;" />
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <div class="col-md-6 text-center">
+                                                <button class="btn btn_one">تایید تغییرات</button>
+                                            </div>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

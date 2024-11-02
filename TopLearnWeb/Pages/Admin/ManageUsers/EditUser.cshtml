@@ -1,0 +1,102 @@
+﻿@page "{id}"
+@using TopLearnWeb.DataLayer.Entities.User
+@model TopLearn.Web.Pages.Admin.ManageUsers.EditUserModel
+@{
+    ViewData["Title"] = "ویرایش کاربر";
+    List<Role> Roles = ViewData["Roles"] as List<Role>;
+}
+
+<div class="container-fluid py-4">
+    <div class="card mb-4">
+        <div class="table">
+            <div class="ms-md-auto pe-md-3">
+                <form method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="EditUserViewModel.UserId" value="@Model.EditUserViewModel.UserId"/>
+                    <input type="hidden" asp-for="EditUserViewModel.AvatarName" value="@Model.EditUserViewModel.AvatarName" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card" style="border: solid blue 2px; margin:10px; padding:5px;">
+                                <h5 class="text-center" style="margin:10px; border-radius:25px;">اطلاعات کاربری</h5>
+                                <div class="card-body">
+                                    <div class="input-group input-group-outline">
+                                        <label class="form-label" style="color:green !important;">نام کاربری : @Model.EditUserViewModel.UserName</label>
+                                    </div>
+                                    <br />
+                                    <div class="input-group input-group-outline my-3">
+                                        <label class="form-label">ایمیل</label>
+                                        <input asp-for="EditUserViewModel.Email" type="text" class="form-control">
+                                    </div>
+                                    <div class="input-group input-group-outline my-3">
+                                        <label class="form-label">رمز عبور</label>
+                                        <input asp-for="EditUserViewModel.PassWord" type="text" class="form-control">
+                                    </div>
+                                    <p>فقط در صورت وارد کردن رمز عبور ، رمز کاربر تغییر خواهد کرد</p>
+                                </div>
+                            </div>
+                            <!-- Roles -->
+                            <div>
+                                <div class="card" style="border: solid blue 2px; margin:10px; margin-top:20px;">
+                                    <div class="card-body" style="font-family:iranyekan;">
+                                        <h5 class="card-title text-center" style="padding:5px; border-radius:25px;">انتخاب نقش ها</h5>
+                                        @foreach (Role role in Roles)
+                                        {
+                                            <div>
+                                                <label style="font-size:18px;">
+                                                    <input type="checkbox" name="SelectedRoles" value="@role.RoleId" @((Model.EditUserViewModel.UserRoles.Any(r => r == role.RoleId)?"checked":"" ))>
+                                                    @role.RoleTitle
+                                                </label>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Roles -->
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card" style="border: solid blue 2px; margin:10px; padding:5px;">
+                                <h5 class="text-center" style="margin:10px; border-radius:25px; margin-bottom:30px; ">تصویر پروفایل</h5>
+                                <div class="card-body">
+
+                                    <!-- Picture -->
+                                    <div class="card mx-auto">
+                                        <img id="output" class="card-img-top" src="/UserAvatar/@(Model.EditUserViewModel.AvatarName ?? "DefaultAvatar.jpg")" alt="تصویر پروفایل" style="width:250px; height:250px; object-fit:cover; margin:0 auto; margin-bottom:20px;">
+                                        <div class="card-body" style="margin-top:10px;">
+                                            <label>انتخاب تصویر</label>
+                                            <input type="file" asp-for="EditUserViewModel.Avatar" onchange="loadFile(event)" />
+                                        </div>
+                                    </div>
+                                    <!-- Picture -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" style="text-align:center;">
+                            <input type="submit" value="تایید اطلاعات" class="btn btn-success"
+                        </div>
+                    </div>
+                    <br />
+                    <div asp-validation-summary="All" style="color:red !important;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        var loadFile = function (event) {
+            var output = document.getElementById('output');
+
+            // Load the newly selected picture
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+    </script>
+}   

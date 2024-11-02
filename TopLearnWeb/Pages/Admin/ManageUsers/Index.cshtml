@@ -1,0 +1,132 @@
+﻿@page
+@using TopLearn.Core.Convertors
+@model TopLearn.Web.Pages.Admin.ManageUsers.IndexModel
+@{
+    ViewData["Title"] = "مدیریت کاربران";
+}
+
+<div class="container-fluid py-4">
+    <div class="card mb-4">
+        <div class="table-responsive">
+            <table class="table align-items-center mb-0 table-hover table-striped">
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                    <form method="get">
+                        <div class="col-md-3">
+                            <div class="input-group input-group-outline" style="padding-top: 20px; padding-left: 20px;">
+                                <label class="form-label" style="padding-top: 20px;">پویش بر اساس نام کاربری ...</label>
+                                <input type="text" name="userNameFilter" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group input-group-outline" style="padding-top: 20px; padding-left: 20px;">
+                                <label class="form-label" style="padding-top: 20px;">پویش بر اساس ایمیل ...</label>
+                                <input type="text" name="emailFilter" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group input-group-outline" style="padding-top: 20px; padding-left: 20px;">
+                                <button type="submit" class="btn-info">تایید</button>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="input-group input-group-outline" style="padding-top: 20px;">
+                                <a href="ManageUsers/CreateUser" class="btn btn-success">عضو جدید</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <hr />
+                <thead style="background-color:black; text-color:white; font-s">
+                    <tr>
+                        <th>نام کاربری</th>
+                        <th>آدرس ایمیل</th>
+                        <th>وضعیت کاربر</th>
+                        <th>تاریخ ثبت نام</th>
+                        <th>دستورات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.UserForAdminViewModel.Users)
+                    {
+                        //store the userid
+                        <input type="hidden" value="@user.UserId" id="user-id-@user.UserId" />
+                        <tr>
+                            <td>
+                                <div class="d-flex px-2 py-1">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="mb-0 text-xs">@user.UserName</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="text-xs font-weight-bold mb-0">@user.Email</p>
+                            </td>
+                            <td class="align-middle text-center text-sm">
+                                @if (user.IsActive)
+                                {
+                                    <p class="font-weight-bold mb-0" style="color:green !important;">فعال</p>
+                                }
+                                else
+                                {
+                                    <p class="font-weight-bold mb-0" style="color:red !important;">غیر فعال</p>
+                                }
+                            </td>
+                            <td class="align-middle text-center">
+                                <span class="text-secondary text-xs font-weight-normal">@user.RegisterDate.ToShamsi()</span>
+                            </td>
+                            <td class="align-middle text-center text-sm">
+                                <a href="/Admin/ManageUsers/EditUser/@user.UserId" style="color:orangered !important;">
+                                    ویرایش
+                                </a>
+                                &nbsp;
+                                <a href="/Admin/ManageUsers/DeleteUser/@user.UserId" style="color:red !important;">
+                                    حذف
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <hr />
+            <!--Pagination Start-->
+            @{
+                var currentPage = Model.UserForAdminViewModel.CurrentPage;
+                var pageCount = Model.UserForAdminViewModel.PageCount;
+
+                // Ensure previous and next pages are clamped within valid bounds
+                var previousPage = Math.Max(1, currentPage - 1);
+                var nextPage = Math.Min(pageCount, currentPage + 1);
+            }
+
+            <nav aria-label="..." style="display: flex; justify-content: center;">
+                <ul class="pagination" style="display: flex; justify-content: center; padding-left: 0; list-style: none;">
+                    <li class="page-item">
+                        <a class="page-link" href="/Admin/ManageUsers?PageId=@previousPage" tabindex="-1">
+                            <span class="material-icons">
+                                keyboard_arrow_right
+                            </span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    @for (int i = 1; i <= pageCount; i++)
+                    {
+                        <li class="page-item @((i == currentPage) ? " active" : "")">
+                            <a class="page-link" href="/Admin/ManageUsers?PageId=@i">@i<span class="sr-only">(current)</span></a>
+                        </li>
+                    }
+                    <li class="page-item">
+                        <a class="page-link" href="/Admin/ManageUsers?PageId=@nextPage" tabindex="-1">
+                            <span class="material-icons">
+                                keyboard_arrow_left
+                            </span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!--Pagination End-->
+        </div>
+    </div>
+    <div />

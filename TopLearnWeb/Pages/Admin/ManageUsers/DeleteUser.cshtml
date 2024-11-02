@@ -1,0 +1,53 @@
+﻿@page "{id}"
+@using TopLearn.Core.Convertors
+@model TopLearn.Web.Pages.Admin.ManageUsers.DeleteUserModel
+@{
+    ViewData["Title"] = "حذف کاربر";
+}
+
+<div class="container-fluid">
+    <div class="row col-12" style="padding-top: 50px;">
+        <div class="col-md-9 col-sm-12 col-xs-12">
+            <div class="card shadow-lg border border-primary p-3">
+                <h4 style="padding-top: 20px; padding-bottom: 20px;">اطلاعات حساب کاربری</h4>
+                <div class="row" style="margin-bottom: 1rem;"></div> <!-- Adds space -->
+                <div class="row" style="padding-bottom: 20px;">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="input-layer">
+                            <label> نام و نام خانوادگی یا نام کاربری : @Model.UserInformationViewModel.UserName </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="input-layer">
+                            <label> شماره تماس : 00000000000</label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 1rem;"></div> <!-- Adds space -->
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="input-layer">
+                            <label> آدرس ایمیل : @Model.UserInformationViewModel.Email </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="input-layer">
+                            <label> تاریخ ثبت نام : @Model.UserInformationViewModel.RegisterDate.ToShamsi() </label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-bottom: 1rem;"></div> <!-- Adds space -->
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="input-layer">
+                            <label> موجودی حساب : @Model.UserInformationViewModel.Wallet تومان </label>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
+                        <form method="post">
+                            <input type="hidden" name="UserId" value="@ViewData["Userid"].ToString()" />
+                            <input type="submit" value="حذف" class="btn btn-danger"/>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+﻿@using TopLearn.Core.Convertors
+@using TopLearn.Core.DTOs
+@model UserInformationViewModel
+
+@{
+    ViewData["Title"] = "پنل کاربری";
+}
+
+<div class="container">
+    <div name="UserInformationArea">
+        <div class="row col-12" style="padding-top: 50px;">
+            <partial name="PartialViews/_UserPanelSideBar" />
+            <div class="col-md-9 col-sm-12 col-xs-12">
+                <div class="card shadow-lg border border-primary p-3">
+                    <h4 style="padding-top: 20px; padding-bottom: 20px;">اطلاعات حساب کاربری</h4>
+                    <div class="row" style="margin-bottom: 1rem;"></div> <!-- Adds space -->
+                    <div class="row" style="padding-bottom: 20px;">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="input-layer">
+                                <label> نام و نام خانوادگی یا نام کاربری : @Model.UserName </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="input-layer">
+                                <label> شماره تماس : 00000000000</label>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 1rem;"></div> <!-- Adds space -->
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="input-layer">
+                                <label> آدرس ایمیل : @Model.Email </label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="input-layer">
+                                <label> تاریخ ثبت نام : @Model.RegisterDate.ToShamsi() </label>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 1rem;"></div> <!-- Adds space -->
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="input-layer">
+                                <label> موجودی حساب : @Model.Wallet تومان </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+
