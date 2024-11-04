@@ -1,0 +1,52 @@
+﻿@page
+@using TopLearn.Core.Convertors
+@model TopLearn.Web.Pages.Admin.Roles.IndexModel
+@{
+    ViewData["Title"] = "مدیریت نقش ها";
+}
+
+<div class="container-fluid py-4">
+    <div class="card mb-4">
+        <div class="table-responsive">
+            <table class="table align-items-center mb-0 table-hover table-striped">
+                <div class="col-md-3">
+                    <div class="input-group input-group-outline" style="padding-top: 20px;">
+                        <a href="/Admin/Roles/CreateRole" class="btn btn-success" style="margin-right:20px;">نقش جدید</a>
+                    </div>
+                </div>
+                <hr />
+                <thead style="background-color:black; text-color:white; font-s">
+                    <tr>
+                        <th>عنوان نقش</th>
+                        <th>دستورات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var Roles in Model.RolesList)
+                    {
+                        <tr>
+                            <td>
+                                <div class="d-flex px-2 py-1">
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h6 class="mb-0 text-xs">@Roles.RoleTitle</h6>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle text-sm">
+                                <a href="/Admin/Roles/EditRole/@Roles.RoleId" style="color:orange !important;">
+                                    ویرایش
+                                </a>
+                                &nbsp;
+                                <a href="/Admin/Roles/DeleteRole/@Roles.RoleId" style="color:red !important;">
+                                    حذف
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <hr />
+        </div>
+    </div>
+    <div />

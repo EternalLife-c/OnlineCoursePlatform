@@ -21,6 +21,7 @@ namespace TopLearnWeb.DataLayer.Context
         {
 
             modelBuilder.Entity<User>().HasQueryFilter(u => !u.Deleted);
+            modelBuilder.Entity<Role>().HasQueryFilter(u => !u.Deleted);
 
             #region Seed Data
 
@@ -38,27 +39,6 @@ namespace TopLearnWeb.DataLayer.Context
                                 TypeTitle = "برداشت"
                             }
                             );
-
-            #endregion
-
-            #region Roles Seed Data
-
-            modelBuilder.Entity<Role>().HasData(
-                new Role
-                {
-                    RoleId = 1,
-                    RoleTitle = "مدیر"
-                },
-                new Role
-                {
-                    RoleId = 2,
-                    RoleTitle = "مدرس"
-                },
-                new Role
-                {
-                    RoleId = 3,
-                    RoleTitle = "کاربر"
-                });
 
             #endregion
 

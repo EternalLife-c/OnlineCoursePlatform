@@ -16,6 +16,13 @@ namespace TopLearn.Core.Services.Interfaces
             _context = context;
         }
 
+        public int AddRole(Role role)
+        {
+            _context.Roles.Add(role);
+            _context.SaveChanges();
+            return role.RoleId;
+        }
+
         public void AddRolesToUser(List<int> roleIds, int userId)
         {
             foreach (int roleId in roleIds)
@@ -29,6 +36,12 @@ namespace TopLearn.Core.Services.Interfaces
             _context.SaveChanges();
         }
 
+        public void DeleteRole(Role role)
+        {
+            role.Deleted = true;
+            UpdateRole(role);
+        }
+
         public void EditUserRoles(int userId, List<int> RolesId)
         {
             //Remove all User Roles
@@ -38,9 +51,20 @@ namespace TopLearn.Core.Services.Interfaces
             AddRolesToUser(RolesId, userId);
         }
 
+        public Role GetRoleById(int RoleId)
+        {
+            return _context.Roles.Find(RoleId);
+        }
+
         public List<Role> GetRoles()
         {
             return _context.Roles.ToList();
+        }
+
+        public void UpdateRole(Role role)
+        {
+            _context.Roles.Update(role);
+            _context.SaveChanges();
         }
     }
 }

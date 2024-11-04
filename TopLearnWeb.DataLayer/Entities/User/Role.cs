@@ -4,6 +4,7 @@ using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace TopLearnWeb.DataLayer.Entities.User
 {
@@ -22,8 +23,11 @@ namespace TopLearnWeb.DataLayer.Entities.User
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string RoleTitle { get; set; }
 
+        public bool Deleted { get; set; }
+
         #region Relations
 
+        [ValidateNever]
         public virtual List<UserRole> UserRoles { get; set; }
 
         #endregion

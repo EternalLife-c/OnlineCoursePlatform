@@ -1,0 +1,41 @@
+﻿@page
+@using TopLearnWeb.DataLayer.Entities.User
+@model TopLearn.Web.Pages.Admin.Roles.CreateRoleModel
+@{
+    ViewData["Title"] = "افزودن نقش جدید";
+}
+
+<div class="container-fluid py-4">
+    <div class="card mb-4">
+        <div class="table">
+            <div class="ms-md-auto pe-md-3">
+                <form method="post">
+                    <div class="row">
+                        <div class="col-sm-6 card" style="border: solid blue 2px;padding:5px;">
+                            <h5 class="text-center" style="margin-top:10px">ایجاد نقش جدید</h5>
+                            <div class="card-body">
+                                <div class="input-group input-group-outline">
+                                    <label class="form-label">عنوان نقش</label>
+                                    <input asp-for="Role.RoleTitle" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 card" style="border: solid blue 2px; padding:5px;">
+                            <h5 class="text-center" style="margin-top:10px;">دسترسی ها</h5>
+                            <div class="card-body">
+                                <!--put permissions here-->
+                            </div>
+                        </div>
+                    </div>
+                    <div asp-validation-summary="All" style="color:red !important;"></div>
+                    <div class="row">
+                        <div class="col-md-12" style="text-align:center;">
+                            <input type="submit" value="ذخیر نقش" class="btn btn-success"
+                        </div>
+                    </div>
+                    <br />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

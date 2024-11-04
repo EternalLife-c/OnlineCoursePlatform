@@ -94,6 +94,9 @@ namespace TopLearn.DataLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"), 1L, 1);
 
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("RoleTitle")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -102,23 +105,6 @@ namespace TopLearn.DataLayer.Migrations
                     b.HasKey("RoleId");
 
                     b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            RoleId = 1,
-                            RoleTitle = "مدیر"
-                        },
-                        new
-                        {
-                            RoleId = 2,
-                            RoleTitle = "مدرس"
-                        },
-                        new
-                        {
-                            RoleId = 3,
-                            RoleTitle = "کاربر"
-                        });
                 });
 
             modelBuilder.Entity("TopLearnWeb.DataLayer.Entities.User.User", b =>

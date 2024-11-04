@@ -107,6 +107,7 @@ namespace TopLearn.Core.Services.Interfaces
         {
             User user = GetUserById(userId);
             user.Deleted = true;
+            user.IsActive = false;
             UpdateUser(user);
         }
 

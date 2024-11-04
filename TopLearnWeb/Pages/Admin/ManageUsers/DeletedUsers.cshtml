@@ -42,7 +42,6 @@
                         <th>آدرس ایمیل</th>
                         <th>وضعیت کاربر</th>
                         <th>تاریخ ثبت نام</th>
-                        <th>دستورات</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,16 +71,7 @@
                             <td class="align-middle text-center">
                                 <span class="text-secondary text-xs font-weight-normal">@user.RegisterDate.ToShamsi()</span>
                             </td>
-                            <td class="align-middle text-center text-sm">
-                                <a href="/Admin/ManageUsers/EditUser/@user.UserId" style="color:orangered !important;">
-                                    ویرایش
-                                </a>
-                                &nbsp;
-                                <a href="Admin/DeleteUser" style="color:red !important;">
-                                    حذف
-                                </a>
-                            </td>
-                        </tr>
+                            </tr>
                     }
 
                 </tbody>
