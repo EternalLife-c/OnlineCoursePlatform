@@ -56,6 +56,24 @@ internal class Program
 
         var app = builder.Build();
 
+        //Configure Http Request PipeLine :
+
+        #region API PipeLine
+        // if(app.Environment.IsDevelopment())
+        // {
+        //     app.UseSwagger();
+        //     app.UseSwaggerUI();
+        // }
+        // app.UseRouting();
+        // app.UseAuthorization();
+        // app.UseEndpoints(endpoints => 
+        // {
+        //     endpoints.MapControllers();
+        // });
+        // app.MapControllers();
+        #endregion
+
+        #region WebAPP PipeLine
         app.UseStaticFiles();
 
         app.UseAuthentication();
@@ -78,6 +96,7 @@ internal class Program
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
         });
+        #endregion
 
         app.Run();
     }
